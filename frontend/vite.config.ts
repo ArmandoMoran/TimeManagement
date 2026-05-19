@@ -7,6 +7,11 @@ import { defineConfig } from "vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// VITE_API_PROXY_TARGET lets you point at a Flask running on a non-default port,
+// useful on Windows where 5000 is sometimes reserved by Hyper-V / other agents.
+const apiProxyTarget =
+  process.env.VITE_API_PROXY_TARGET ?? "http://localhost:5000";
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -18,7 +23,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: apiProxyTarget,
         changeOrigin: true,
       },
     },

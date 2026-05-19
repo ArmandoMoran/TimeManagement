@@ -60,7 +60,7 @@ export function ClientsPage(): React.ReactElement {
         <button
           type="submit"
           disabled={create.isPending}
-          className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
         >
           {create.isPending ? "Creating…" : "Create client"}
         </button>

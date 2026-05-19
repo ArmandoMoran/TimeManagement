@@ -196,7 +196,7 @@ export function InvoicesPage(): React.ReactElement {
               type="button"
               onClick={handleCreate}
               disabled={createMutation.isPending || previewData.lines.length === 0}
-              className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+              className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
             >
               {createMutation.isPending ? "Creating…" : "Create invoice"}
             </button>

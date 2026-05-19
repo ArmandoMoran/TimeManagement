@@ -30,23 +30,34 @@ export function TimerBar(): React.ReactElement | null {
 
   if (!current) return null;
 
+  const isRunning = current.state === "running";
+
   return (
     <div
       role="status"
       aria-label="Active timer"
-      className="flex items-center gap-3 border-t bg-muted/30 px-6 py-2 text-sm"
+      className="sticky bottom-0 flex items-center gap-3 border-t border-border bg-card px-6 py-2 text-sm shadow-[0_-1px_2px_rgba(0,0,0,0.04)]"
     >
-      <span className="font-mono tabular-nums" data-testid="timer-elapsed">
+      <span
+        aria-hidden
+        className={`h-2.5 w-2.5 rounded-full ${
+          isRunning ? "bg-success animate-pulse" : "bg-warning"
+        }`}
+      />
+      <span
+        className="font-mono text-base font-semibold tabular-nums text-primary"
+        data-testid="timer-elapsed"
+      >
         {formatHMS(localElapsed)}
       </span>
       <span className="text-muted-foreground">
         {current.entry.description || "(no description)"}
       </span>
       <div className="ml-auto flex gap-2">
-        {current.state === "running" ? (
+        {isRunning ? (
           <button
             type="button"
-            className="rounded-md border px-3 py-1"
+            className="rounded-md border border-border bg-background px-3 py-1 hover:bg-muted"
             onClick={() => {
               pause.mutate();
             }}
@@ -56,7 +67,7 @@ export function TimerBar(): React.ReactElement | null {
         ) : (
           <button
             type="button"
-            className="rounded-md border px-3 py-1"
+            className="rounded-md border border-border bg-background px-3 py-1 hover:bg-muted"
             onClick={() => {
               resume.mutate();
             }}
@@ -66,7 +77,7 @@ export function TimerBar(): React.ReactElement | null {
         )}
         <button
           type="button"
-          className="rounded-md border bg-foreground px-3 py-1 text-background"
+          className="rounded-md bg-primary px-3 py-1 text-primary-foreground hover:opacity-90"
           onClick={() => {
             stop.mutate();
           }}
