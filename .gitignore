@@ -23,6 +23,7 @@ dist/
 .npm
 .pnpm-store/
 .vite/
+*.tsbuildinfo
 
 # Frontend builds served from backend
 backend/static/
