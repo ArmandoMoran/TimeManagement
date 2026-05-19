@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# Node
+node_modules/
+dist/
+*.log
+.npm
+.pnpm-store/
+.vite/
+
+# Frontend builds served from backend
+backend/static/
+backend/app/static/dist/
+
+# Playwright
+test-results/
+playwright-report/
+.playwright/
+playwright/.cache/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local env
+.env
+.env.local
+.env.*.local
+*.local
+
+# Database / build artifacts
+*.db
+*.sqlite3
+instance/
+
+# Generated invoices
+generated_pdfs/

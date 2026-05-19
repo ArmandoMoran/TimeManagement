@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: timetrack-db
+    environment:
+      POSTGRES_USER: timetrack
+      POSTGRES_PASSWORD: timetrack
+      POSTGRES_DB: timetrack
+    ports:
+      # Host port 5433 (5432 is commonly already in use by a local Postgres install on Windows).
+      - "15432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./infra/db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U timetrack -d timetrack"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: timetrack-backend
+    environment:
+      FLASK_ENV: ${FLASK_ENV:-development}
+      DATABASE_URL: postgresql+psycopg://timetrack:timetrack@db:5432/timetrack
+      TEST_DATABASE_URL: postgresql+psycopg://timetrack:timetrack@db:5432/timetrack_test
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-change-me}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-dev-jwt-secret-change-me}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    profiles: ["docker", "ci"]
+
+  frontend:
+    image: node:24-alpine
+    container_name: timetrack-frontend
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    environment:
+      NODE_ENV: development
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    profiles: ["docker"]
+
+volumes:
+  db_data:
