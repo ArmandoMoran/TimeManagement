@@ -99,7 +99,7 @@ export function ProjectsPage(): React.ReactElement {
         <button
           type="submit"
           disabled={create.isPending}
-          className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
         >
           {create.isPending ? "Creating…" : "Create project"}
         </button>
@@ -224,7 +224,7 @@ function ProjectMembersPanel({ projectId }: { projectId: string }): React.ReactE
         <button
           type="submit"
           disabled={add.isPending}
-          className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
         >
           {add.isPending ? "Adding…" : "Add member"}
         </button>

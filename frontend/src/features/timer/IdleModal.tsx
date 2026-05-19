@@ -46,7 +46,7 @@ export function IdleModal(): React.ReactElement | null {
           <button
             type="button"
             onClick={handleKeep}
-            className="rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background"
+            className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
           >
             Keep going
           </button>

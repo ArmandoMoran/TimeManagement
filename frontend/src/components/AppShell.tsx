@@ -36,15 +36,29 @@ export function AppShell(): React.ReactElement {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="flex items-center justify-between border-b px-6 py-3">
-        <h1 className="text-xl font-semibold tracking-tight">TimeTrack</h1>
+      <header className="flex items-center justify-between border-b border-border bg-card px-6 py-3 shadow-sm">
+        <div className="flex items-center gap-2">
+          <div
+            aria-hidden
+            className="h-6 w-6 rounded-md bg-primary"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, var(--color-primary) 0%, oklch(0.7 0.18 220) 100%)",
+            }}
+          />
+          <h1 className="text-xl font-semibold tracking-tight text-primary">
+            TimeTrack
+          </h1>
+        </div>
         {isAuthenticated && (
           <div className="flex items-center gap-3 text-sm">
-            <span aria-label="signed in as">{user?.name}</span>
+            <span aria-label="signed in as" className="text-muted-foreground">
+              {user?.name}
+            </span>
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-md border px-3 py-1 text-sm"
+              className="rounded-md border border-border bg-background px-3 py-1 text-sm hover:bg-muted"
             >
               Log out
             </button>
@@ -55,15 +69,19 @@ export function AppShell(): React.ReactElement {
       {isAuthenticated ? (
         <>
           <div className="flex">
-            <nav className="w-48 border-r p-4" aria-label="Main">
-              <ul className="space-y-1 text-sm">
+            <nav
+              className="w-52 border-r border-border bg-card p-4"
+              aria-label="Main"
+            >
+              <ul className="space-y-0.5 text-sm">
                 {visibleNav.map((item) => (
                   <li key={item.to}>
                     <Link
                       to={item.to}
-                      className="block rounded px-2 py-1 hover:bg-muted"
+                      className="block rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                       activeProps={{
-                        className: "block rounded px-2 py-1 bg-muted font-medium",
+                        className:
+                          "block rounded-md px-3 py-1.5 bg-accent text-accent-foreground font-medium",
                       }}
                     >
                       {item.label}

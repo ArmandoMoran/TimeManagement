@@ -117,7 +117,7 @@ export function TimesheetView(): React.ReactElement {
             type="button"
             disabled={submit.isPending}
             onClick={handleSubmitWeek}
-            className="rounded-md bg-foreground px-3 py-1 text-sm font-medium text-background disabled:opacity-50"
+            className="rounded-md bg-primary px-3 py-1 text-sm font-medium text-primary-foreground disabled:opacity-50"
           >
             {submit.isPending ? "Submitting…" : "Submit week"}
           </button>

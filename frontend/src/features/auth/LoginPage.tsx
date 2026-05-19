@@ -88,7 +88,7 @@ export function LoginPage(): React.ReactElement {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+          className="w-full rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
         >
           {isPending ? "Signing in…" : "Sign in"}
         </button>

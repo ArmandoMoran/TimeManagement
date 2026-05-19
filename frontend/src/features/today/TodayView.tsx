@@ -141,7 +141,7 @@ export function TodayView(): React.ReactElement {
           <button
             type="submit"
             disabled={start.isPending}
-            className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background disabled:opacity-50"
+            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
           >
             {start.isPending ? "Starting…" : "Start timer"}
           </button>
@@ -283,7 +283,7 @@ export function TodayView(): React.ReactElement {
           <button
             type="submit"
             disabled={createManual.isPending}
-            className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background disabled:opacity-50"
+            className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
           >
             {createManual.isPending ? "Adding…" : "Add entry"}
           </button>
